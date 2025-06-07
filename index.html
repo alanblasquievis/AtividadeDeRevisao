@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - MyPreferencesApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background-color: #222;
+      color: #eee;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      text-align: center;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <input id="username" placeholder="Usuário" />
+    <input id="password" type="password" placeholder="Senha" />
+    <button id="loginBtn">Entrar</button>
+  </div>
+
+  <script>
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if (user === 'admin' && pass === 'admin123') {
+        document.cookie = "session_id=abc123; path=/";
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Usuário ou senha inválidos");
+      }
+    });
+  </script>
+</body>
+</html>
